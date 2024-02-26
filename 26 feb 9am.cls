@@ -36,7 +36,7 @@ trigger opportunityTrigger on Opportunity (after insert, after update, after del
         feb26MorningFuture.updateOpportunityCount(accountIds, userIds);
     }
 }
-----------------------------------------------------------------------
+//----------------------------------------------------------------------
 
 //this is the class with SYNCHRONOUS methods 
 
@@ -73,7 +73,7 @@ public with sharing class feb26MorningSync {
     }
 }
 
------------------------------------------------------------
+//-----------------------------------------------------------
 
 // this is the class with one ASYNCHRONOUS future method called once in the trigger
 
