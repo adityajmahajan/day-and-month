@@ -2,10 +2,7 @@
 trigger OrderTrigger1 on Order (before update) {
     if(Trigger.isBefore){
         if(Trigger.isUpdate){
-            List<OrderItem> orderItemList = [SELECT Id, Quantity, Product2.Id, 
-            Product2.Inventory__c, Product2.ProductCode, OrderId
-            FROM OrderItem
-            WHERE orderId = :Trigger.new];
+            List<OrderItem> orderItemList = [SELECT Id, Quantity, Product2.Id, Product2.Inventory__c, Product2.ProductCode, OrderId FROM OrderItem WHERE orderId = :Trigger.new];
 
             Map<Id, Boolean> isordervalid = new Map<Id, Boolean>(); 
             Map<Id, String> validation_Errors = new Map<Id, String>(); 
