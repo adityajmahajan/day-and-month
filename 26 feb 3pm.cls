@@ -1,7 +1,7 @@
 //trigger
-trigger OrderTrigger1 on Order (before update) {
+trigger OrderTrigger1 on Order (before insert,before update) {
     if(Trigger.isBefore){
-        if(Trigger.isUpdate){
+        if(Trigger.isUpdate||Trigger.iInserts){
             List<OrderItem> orderItemList = [SELECT Id, Quantity, Product2.Id, 
             Product2.Inventory__c, Product2.ProductCode, OrderId
             FROM OrderItem
@@ -37,7 +37,9 @@ trigger OrderTrigger1 on Order (before update) {
                     feb26Afternoon.futureMethod(order.Id);
                 }
             }
-            update orderItemList;
+            if(Trigger.isUpdate){
+                update orderItemList;
+            }
         }
     }
 }
