@@ -18,7 +18,6 @@ public class TestFeb21Morning {
     @isTest
     static void testErrorBeforeDeleting() {
         Account acc =[SELECT Id FROM Account WHERE Name = 'Test Account'];
-        Test.startTest();
         Database.DeleteResult deleteResult = Database.delete(acc, false);
     
         System.assertEquals(false, deleteResult.isSuccess(), 'Delete operation should not be successful');
