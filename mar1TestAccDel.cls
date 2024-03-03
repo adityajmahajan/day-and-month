@@ -24,8 +24,8 @@ public class TestFeb21Morning {
     static void testErrorBeforeDeleting() {
         
         Test.startTest();
-        List<Account> testAccListInsert = [SELECT Id FROM Account WHERE Name LIKE 'Test Account%' LIMIT 200];
-        Database.DeleteResult[] deleteResults = Database.delete(testAccListInsert, true);
+        List<Account> testAccListDelete = [SELECT Id FROM Account WHERE Name LIKE 'Test Account%' LIMIT 100];
+        Database.DeleteResult[] deleteResults = Database.delete(testAccListDelete, false);
         Test.stopTest();
         System.assertEquals(false, deleteResults[1].isSuccess(), 'Delete operation should not be successful');
     }
