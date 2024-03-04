@@ -6,16 +6,14 @@ public class TestFeb21Morning {
         List<Account> testAccListInsert = new List<Account>();
         List<Contact> testConListInsert = new List<Contact>();
         for (Integer i = 0; i < 200; i++) {
-            Account testAccount = new Account(Name = 'Test Account'+i);
-            testAccListInsert.add(testAccount);
-            if(i<100){
-                Contact testContact = new Contact(
-                    FirstName = 'Test',
-                    LastName = 'Contact',
-                    AccountId = testAccount.Id
-                );
-            testConListInsert.add(testContact);
-            }
+        Account testAccount = new Account(Name = 'Test Account'+i);
+        testAccListInsert.add(testAccount);
+            Contact testContact = new Contact(
+                FirstName = 'Test',
+                LastName = 'Contact',
+                AccountId = testAccount.Id
+        );
+        testConListInsert.add(testContact);
         }
         insert testAccListInsert;
         insert testConListInsert;
