@@ -29,6 +29,15 @@ public class TestFeb21Morning {
         Test.stopTest();
         System.assertEquals(false, deleteResults[1].isSuccess(), 'Delete operation should not be successful');
     }
+@isTest
+    static void testNoErrorBeforeDeleting() {
+        
+        Test.startTest();
+        List<Account> testAccListDelete = [SELECT Id FROM Account WHERE Name LIKE 'Test Account%' LIMIT 100];
+        Database.DeleteResult[] deleteResults = Database.delete(testAccListDelete, false);
+        Test.stopTest();
+        System.assertEquals(true, deleteResults[1].isSuccess(), 'Delete operation should not be successful');
+    }
 }
 
 
