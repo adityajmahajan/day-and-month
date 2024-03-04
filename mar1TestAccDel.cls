@@ -8,13 +8,14 @@ public class TestFeb21Morning {
         for (Integer i = 0; i < 200; i++) {
             Account testAccount = new Account(Name = 'Test Account'+i);
             testAccListInsert.add(testAccount);
-
-            Contact testContact = new Contact(
-                FirstName = 'Test',
-                LastName = 'Contact',
-                AccountId = testAccount.Id
-            );
+            if(i<100){
+                Contact testContact = new Contact(
+                    FirstName = 'Test',
+                    LastName = 'Contact',
+                    AccountId = testAccount.Id
+                );
             testConListInsert.add(testContact);
+            }
         }
         insert testAccListInsert;
         insert testConListInsert;
@@ -36,7 +37,7 @@ public class TestFeb21Morning {
         List<Account> testAccListDelete = [SELECT Id FROM Account WHERE Name LIKE 'Test Account%' LIMIT 100];
         Database.DeleteResult[] deleteResults = Database.delete(testAccListDelete, false);
         Test.stopTest();
-        System.assertEquals(true, deleteResults[1].isSuccess(), 'Delete operation should not be successful');
+        System.assertEquals(true, deleteResults[1].isSuccess(), 'Delete operation should be successful');
     }
 }
 
