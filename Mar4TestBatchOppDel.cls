@@ -13,7 +13,7 @@ private class Mar4TestBatchOppDel {
         Database.executeBatch(b, 10); // Test with a batch size of 10
         Test.stopTest();
 
-        List<Opportunity> successfullyDelOpps = [SELECT Id FROM Opportunity WHERE StageName='Closed Lost' AND CreatedDate>LAST_N_DAYS:60];//no records should be fetched
+        List<Opportunity> successfullyDelOpps = [SELECT Id FROM Opportunity WHERE StageName='Closed Lost' AND CreatedDate > LAST_N_DAYS:60];//no records should be fetched
         System.assertEquals(0, successfullyDelOpps.size(), 'Batch class fails to delete all Closed Lost Opportunities created in the last 60 days');
     }
 
