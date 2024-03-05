@@ -33,7 +33,6 @@ private class Mar4TestBatchOppDel {
     }
 }
 //TestDataFactory
-@isTest
 public with sharing class Mar4TestDataFactoryOpportunity {
     @TestVisible
     static List<Opportunity> createOppRecords(String stageNameInput, Integer noOfRecords) {
