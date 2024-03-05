@@ -37,9 +37,6 @@ trigger OrderTrigger1 on Order (before insert,before update) {
                     feb26Afternoon.futureMethod(order.Id);
                 }
             }
-            if(Trigger.isUpdate){
-                update orderItemList;
-            }
         }
     }
 }
