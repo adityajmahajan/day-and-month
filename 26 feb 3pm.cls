@@ -1,5 +1,5 @@
 //trigger
-trigger OrderTrigger1 on Order (before update) {
+trigger OrderTrigger1 on Order (before insert, before update) {
     if(Trigger.isBefore){
         if(Trigger.isUpdate||Trigger.isInsert){
             List<OrderItem> orderItemList = [SELECT Id, Quantity, Product2.Id, 
