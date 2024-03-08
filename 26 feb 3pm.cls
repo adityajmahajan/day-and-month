@@ -45,7 +45,7 @@ public with sharing class feb26Afternoon {
     @future(callout=true)
     public static void futureMethod(Id Ids){
     try {
-        Order orderId = ([SELECT Validation_Errors__c, Name, IsOrderValid__c, Owner.Email from Order WHERE Id = : Ids LIMIT 1]);
+        Order orderId = ([SELECT Validation_Errors__c, Name, IsOrderValid__c, Owner.Email from Order WHERE Id = : Ids]);
         String subject;
         String body;
             if(orderId.IsOrderValid__c){
