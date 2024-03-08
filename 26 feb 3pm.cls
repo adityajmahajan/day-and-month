@@ -44,22 +44,23 @@ trigger OrderTrigger1 on Order (before insert,before update) {
 public with sharing class feb26Afternoon {
     @future(callout=true)
     public static void futureMethod(Id Ids){
-    try {
-        Order orderId = ([SELECT Validation_Errors__c, Name, IsOrderValid__c, Owner.Email from Order WHERE Id = : Ids]);
-        String subject;
-        String body;
-            if(orderId.IsOrderValid__c){
-                body = 'Dear'+orderId.Owner.Name+'\n';
-                body+= 'Your order is Valid';
-                subject ='Order Validated';
-                EmailManager.sendMail(orderId.Owner.Email,subject,body);
-
-            }
-            else{
-                body = 'Dear'+orderId.Owner.Name+'\n';
-                body+= ' Order Invalid : \n'+ orderId.Validation_Errors__c;
-                subject ='Order Invalid';
-                EmailManager.sendMail(orderId.Owner.Email, subject ,orderid.Validation_Errors__c);
+        try {
+            List<Order> orders = ([SELECT Id, Validation_Errors__c, Name, IsOrderValid__c, Owner.Email from Order WHERE Id = : Ids]);
+            String subject;
+            String body;
+            for(Order ord :orders){
+                if(ord.IsOrderValid__c){
+                    body = 'Dear'+ord.Owner.Name+'\n';
+                    body+= 'Your order is Valid';
+                    subject ='Order Validated';
+                    EmailManager.sendMail(ord.Owner.Email,subject,body);
+                }
+                else{
+                    body = 'Dear'+ord.Owner.Name+'\n';
+                    body+= ' Order Invalid : \n'+ ord.Validation_Errors__c;
+                    subject ='Order Invalid';
+                    EmailManager.sendMail(ord.Owner.Email, subject ,body);
+                }
             }
         }
         catch (Exception e) {
