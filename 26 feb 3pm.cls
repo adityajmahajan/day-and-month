@@ -47,7 +47,7 @@ public with sharing class feb26Afternoon {
     try {
         Order orderId = ([SELECT Validation_Errors__c, Name, IsOrderValid__c, Owner.Email from Order WHERE Id = : Ids LIMIT 1]);
         String subject;
-        Sring body;
+        String body;
             if(orderId.IsOrderValid__c){
                 body = 'Dear'+orderId.Owner.Name+'\n';
                 body+= 'Your order is Valid';
